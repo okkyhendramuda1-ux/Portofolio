@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Okky Hendra Muda | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<style>
+    #cursor-effect {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+  </style>
+<style>
+<style>
+.section-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+/* GAMBAR */
+.section-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; /* ? FULL AREA */
+
+  opacity: 0.15; /* ?? lebih jelas dari sebelumnya */
+  filter: blur(1px); /* lebih tajam */
+
+  z-index: 0;
+}
+
+/* OVERLAY biar tetap readable */
+.section-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    #0f2a36 20%,
+    rgba(15,42,54,0.6) 50%,
+    transparent
+  );
+  z-index: 0;
+}
+
+.section-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* EXPERIENCE */
+.bg-experience::before {
+  background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=800&auto=format&fit=crop');
+}
+
+.bg-education::before {
+  background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop');
+}
+</style>
+</style>
+</head>
+<body class="bg-[#0b1c26] text-white font-sans scroll-smooth">
+  
+<canvas id="cursor-effect"></canvas>
+<script>
+const canvas = document.getElementById("cursor-effect");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+document.addEventListener("mousemove", (e) => {
+  for (let i = 0; i < 3; i++) {
+    particles.push({
+      x: e.clientX,
+      y: e.clientY,
+      size: Math.random() * 4 + 1,
+      speedX: (Math.random() - 0.5) * 2,
+      speedY: (Math.random() - 0.5) * 2,
+      life: 100
+    });
+  }
+});
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach((p, i) => {
+    p.x += p.speedX;
+    p.y += p.speedY;
+    p.life--;
+
+  ctx.beginPath();
+ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+
+const colors = [
+  [236,72,153],
+  [255,255,255],
+  [255,40,0]
+];
+
+const color = colors[Math.floor(Math.random() * colors.length)];
+
+ctx.fillStyle = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${p.life / 100})`;
+
+ctx.shadowColor = "rgba(255,255,255,0.8)";
+ctx.shadowBlur = 15;
+
+ctx.fill();
+    if (p.life <= 0) particles.splice(i, 1);
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+<!-- NAVBAR -->
+<header class="fixed w-full z-50 bg-[#0b1c26]/80 backdrop-blur px-10 py-4 flex justify-between items-center">
+  <h1 class="font-bold text-lg text-blue-400">Okky H MUDA</h1>
+  <nav class="flex gap-6 text-sm text-gray-300">
+    <a href="#" class="hover:text-blue-400">Home</a>
+    <a href="#about" class="hover:text-blue-400">About</a>
+    <a href="#resume" class="hover:text-blue-400">Resume</a>
+    <a href="#portfolio" class="hover:text-blue-400">Portfolio</a>
+    <a href="#contact" class="hover:text-blue-400">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="min-h-screen flex items-center pt-20">
+  <div class="max-w-6xl mx-auto px-10 w-full">
+    
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      
+      <!-- TEXT -->
+      <div data-aos="fade-right">
+        <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-4">
+          Hi, I'm <br>
+          <span class="text-blue-400 
+            [text-shadow:0_0_6px_rgba(59,130,246,0.6),0_0_12px_rgba(59,130,246,0.4),0_0_20px_rgba(59,130,246,0.25)]">
+            Okky Hendra Muda, S.Kom
+          </span>
+        </h1>
+
+        <p class="text-xl text-gray-300 mb-4">
+          Service Operations | Customer Experience | Data-Driven Leader
+        </p>
+
+        <p class="text-gray-400 italic mb-8 max-w-lg">
+          Transforming service operations through data, systems, and leadership to achieve operational excellence and customer satisfaction.
+        </p>
+        <div class="flex gap-8 mt-10 text-center"> 
+          <div> 
+                <p class="text-2xl font-bold text-blue-400">7+</p>
+                <p class="text-sm text-gray-400">Years Experience</p> 
+          </div> 
+          <div> 
+                <p class="text-2xl font-bold text-blue-400">2000+</p> 
+                <p class="text-sm text-gray-400">Claims / Month</p> 
+          </div> 
+          <div> 
+                <p class="text-2xl font-bold text-blue-400">80+</p> 
+                <p class="text-sm text-gray-400">Service Centers</p> 
+          </div> 
+        </div>
+        <br>
+        <div class="flex gap-4">
+          <a href="#portfolio" class="bg-blue-500 px-6 py-3 rounded-full font-semibold hover:scale-105 transition">View Portfolio</a>
+          <a href="#contact" class="border border-blue-400 px-6 py-3 rounded-full hover:bg-blue-400 hover:text-black transition">Contact & Download CV</a>
+        </div>
+      </div>
+
+      <!-- IMAGE -->
+      <div class="flex justify-center" data-aos="fade-left">
+        <img src="https://image2url.com/r2/default/images/1774858520908-a8eb2109-2393-4ffd-90e7-117e47314e16.png" 
+         class="w-[250px] h-[350px] object-cover rounded-xl border border-gray-700 
+         shadow-[0_15px_30px_rgba(0,0,0,0.35),0_0_25px_rgba(0,150,255,0.5)] 
+         transition-all duration-300 hover:-translate-y-2 
+         hover:shadow-[0_25px_40px_rgba(0,0,0,0.5),0_0_40px_rgba(0,150,255,0.8)]"/>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-20 px-10 max-w-6xl mx-auto" data-aos="fade-up">
+  <h2 class="text-3xl font-bold mb-6">About Me</h2>
+  <p class="text-gray-300 leading-relaxed">
+    Saya adalah profesional di bidang service operations dan customer experience dengan pengalaman lebih dari 7 tahun dalam mengelola operasional service center, meningkatkan efisiensi, dan memastikan kualitas layanan.
+  </p>
+</section>
+
+<section id="resume" class="py-20 bg-[#0f2a36]" data-aos="fade-up">
+  
+  <div class="max-w-6xl mx-auto px-10 ">
+
+    <!-- SUMMARY -->
+    <div class="mb-12 relative z-10">
+      <h2 class="text-3xl font-semibold mb-6">Resume Summary</h2>
+
+      <p class="text-white-400 mb-4">
+        Profesional Service Operations & Customer Experience dengan pengalaman memimpin operasional, meningkatkan efisiensi, dan mengelola data skala besar.
+      </p>
+
+      <p class="text-blue-400 italic">
+        Service Operations and Customer Experience professional with proven ability in managing large-scale operations and driving efficiency through data-driven strategies.
+      </p>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="mb-12 section-bg bg-experience">
+      <h3 class="text-2xl font-semibold mb-6 text-blue-400">Experience</h3>
+
+      <div class="space-y-6">
+        <div class="border-l-2 border-blue-400 pl-6">
+          <h4 class="font-semibold">Manager Service Center</h4>
+          <p class="text-gray-400 text-sm">PT Bolde Inovasi Global | 2023</p>
+          <p class="text-gray-300 text-sm mt-2">
+            Led service center operations, implemented CRM systems, and improved customer satisfaction through data-driven strategies.
+          </p>
+        </div>
+
+        <div class="border-l-2 border-blue-400 pl-6">
+          <h4 class="font-semibold">Business Executive</h4>
+          <p class="text-gray-400 text-sm">PT Teckwah Trading Indonesia | 2017 - 2023</p>
+          <p class="text-gray-300 text-sm mt-2">
+            Managed validation of thousands of service claims and developed performance dashboards to monitor operations.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="section-bg bg-education">
+      <h3 class="text-2xl font-semibold mb-6 text-blue-400">Education</h3>
+
+      <div class="space-y-6">
+        <div class="border-l-2 border-blue-400 pl-6">
+          <h4 class="font-semibold">S1 Manajemen Sistem Informasi</h4>
+          <p class="text-gray-400 text-sm">STMIK Nusa Mandiri Jakarta | 2014 - 2018</p>
+        </div>
+
+        <div class="border-l-2 border-blue-400 pl-6">
+          <h4 class="font-semibold">SMK N 02 Wonosobo</h4>
+          <p class="text-gray-400 text-sm">Instalasi Ketenaga Listrikan | 2008 - 2011</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- PROJECTS / ACHIEVEMENTS -->
+<section id="portfolio" class="py-20 px-10 max-w-6xl mx-auto" data-aos="fade-up">
+  <h2 class="text-3xl font-bold mb-10">Projects & Achievements</h2>
+
+  <div class="grid md:grid-cols-3 gap-6">
+
+    <div class="bg-[#132d3a] p-6 rounded-xl hover:scale-105 transition">
+      <h3 class="font-semibold mb-2">Service Dashboard Development</h3>
+      <p class="text-gray-400 text-sm mb-2">
+        Developed a performance dashboard to monitor service center operations and KPI tracking.
+      </p>
+      <p class="text-blue-400 text-xs">? Improved monitoring efficiency & decision-making</p>
+    </div>
+<div class="bg-[#132d3a] p-6 rounded-xl hover:scale-105 transition">
+      <h3 class="font-semibold mb-2">CRM System Implementation</h3>
+      <p class="text-gray-400 text-sm mb-2">
+        Implemented CRM system to enhance customer interaction tracking and service quality.
+      </p>
+      <p class="text-blue-400 text-xs">? Increased customer satisfaction & response time</p>
+    </div>
+
+    <div class="bg-[#132d3a] p-6 rounded-xl hover:scale-105 transition">
+      <h3 class="font-semibold mb-2">High-Volume Claims Management</h3>
+      <p class="text-gray-400 text-sm mb-2">
+        Managed validation of 2000+ service claims monthly across 80+ service centers nationwide.
+      </p>
+      <p class="text-blue-400 text-xs">? Ensured data accuracy & operational efficiency</p>
+    </div>
+    
+    <div class="bg-[#132d3a] p-6 rounded-xl hover:scale-105 transition">
+      <h3 class="font-semibold mb-2">Process Optimization (SOP)</h3>
+      <p class="text-gray-400 text-sm mb-2">
+        Designed and implemented SOPs to standardize service operations workflow.
+      </p>
+      <p class="text-blue-400 text-xs">? Improved consistency & reduced operational errors</p>
+    </div>
+
+    <div class="bg-[#132d3a] p-6 rounded-xl hover:scale-105 transition">
+      <h3 class="font-semibold mb-2">Network Expansion Support</h3>
+      <p class="text-gray-400 text-sm mb-2">
+        Supported expansion of Authorized Service Center (ASC) network across Indonesia.
+      </p>
+      <p class="text-blue-400 text-xs">? Increased service coverage nationwide</p>
+    </div>
+    
+    <div class="bg-[#132d3a] p-6 rounded-xl hover:scale-105 transition">
+      <h3 class="font-semibold mb-2">Customer Satisfaction Improvement</h3>
+      <p class="text-gray-400 text-sm mb-2">
+        Applied data-driven strategies (NPS & reporting) to improve service quality.
+      </p>
+      <p class="text-blue-400 text-xs">? Boosted customer experience & retention</p>
+    </div>
+</section>
+<section id="portfolio" class="py-20 px-10 bg-[#0f2a36] max-w-6xl mx-auto" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-10">Portfolio</h2>
+<div class="grid md:grid-cols-1 gap-1">
+    <div class="bg-[#132d3a] p-6 rounded-xl hover:scale-105 transition">
+    <P class="text-white-400 text-s">
+        Memiliki kemampuan dalam data analysis, reporting, dashboard development, dan decision making berbasis data untuk mendukung pencapaian target bisnis. Berpengalaman dalam team leadership, stakeholder management, dan cross-functional coordination untuk memastikan operasional berjalan efektif dan efisien.
+    <br>Fokus pada continuous improvement, operational excellence, dan customer-centric strategy untuk meningkatkan performa layanan dan kepuasan pelanggan secara berkelanjutan.
+    </P>
+    <br>
+    <p class="text-blue-400 italic text-s">Strong expertise in data analysis, reporting, dashboard development, and data-driven decision making to support business objectives. Proven ability in team leadership, stakeholder management, and cross-functional coordination to ensure operational effectiveness.
+    <br> to continuous improvement, operational excellence, and customer-centric strategies to drive sustainable service performance and customer satisfaction.
+</p>
+<br>
+   <div class="flex justify-center" data-aos="fade-left">
+      <img src="https://image2url.com/r2/default/images/1774825633365-36c531d9-967e-49ad-a5c4-40246a9b258c.png">
+    </div>
+</div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="py-20 px-10 max-w-6xl mx-auto" data-aos="fade-up">
+  <h2 class="text-3xl font-bold mb-10">SKILLS SECTION</h2>
+
+  <div class="grid md:grid-cols-2 gap-2">
+    <div class="bg-[#132d3a] p-6 rounded-xl hover:scale-105 transition">
+      <h3 class="font-semibold mb-2">Hard Skills</h3>
+      <p class="text-gray-400 text-sm">
+
+        ?? Service Operations
+        <br>Service Center Operations Management
+        <br>After-Sales Service Management
+        <br>Warranty & Claims Handling
+        <br>Spare Parts & Inventory Control
+        <br>SLA (Service Level Agreement) Management
+        <br>Field Service Coordination
+        <br><br>
+        ?? Data & System
+<br>Data Analysis & Reporting
+<br>KPI Monitoring & Performance Dashboard
+<br>CRM System Management
+<br>ERP System (SAP / Accurate)
+<br>Microsoft Excel (Advanced)
+<br>Data Validation & Audit
+<br><br>
+??? Technical (Elektronik)
+<br>Basic Troubleshooting Electronic Devices
+<br>Product Knowledge (Home Appliances / Electronics)
+<br>Repair Process Understanding
+<br>Quality Control & Inspection
+<br><br>
+?? Process & Strategy
+<br>Process Improvement (Lean / SOP Development)
+<br>Operational Efficiency Optimization
+<br>Cost Control & Budgeting
+<br>Continuous Improvement Strategy
+        </p>
+    </div>
+
+    <div class="bg-[#132d3a] p-6 rounded-xl hover:scale-105 transition">
+      <h3 class="font-semibold mb-2">Soft Skills</h3>
+      <p class="text-gray-400 text-sm">
+       ?? Leadership
+<br>Team Leadership & People Management
+<br>Coaching & Mentoring Team
+<br>Decision Making Under Pressure
+<br>Performance Management
+<br><br>
+?? Communication
+<br>Cross-functional Communication
+<br>Stakeholder Management
+<br>Customer Handling & Escalation Management
+<br>Negotiation Skills
+<br><br>
+?? Problem Solving
+<br>Analytical Thinking
+<br>Root Cause Analysis
+<br>Critical Thinking
+<br>Solution-Oriented Mindset
+<br><br>
+? Personal Excellence
+<br>Customer-Centric Mindset
+<br>Adaptability & Resilience
+<br>Time Management & Prioritization
+<br>High Attention to Detail
+      </p>
+    </div>
+  </div>
+</section>
+<br>
+<!-- CONTACT -->
+<section id="contact" class="py-20 bg-[#0f2a36] text-center" data-aos="fade-up">
+  <h2 class="text-3xl font-bold mb-6">Contact</h2>
+  <p class="text-gray-300 mb-4">Let’s work together, How I Work?
+  <br>
+
+  Data-driven decision |
+Process optimization mindset  |
+Customer-centric approach |
+Continuous improvement</p>
+  <p>Email: okkyhendra.muda2@gmail.com</p>
+  <p>Phone: 0812-1151-8369</p>
+</section>
+<br>
+<footer class="text-center py-6 text-gray-500">
+  © 2026 Okky Hendra Muda
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+</body>
+</html>\
